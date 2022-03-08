@@ -1,0 +1,23 @@
+.gradient-bg-welcome {
+    background-color:#0f0e13;
+    background-image: 
+      radial-gradient(at 50% 30%, hsla(253,16%,7%,1) 0, transparent 50%), 
+      radial-gradient(at 50% 100%, hsla(225,39%,30%,1) 0, transparent 50%), 
+      radial-gradient(at 20% 20%, hsla(339,49%,30%,1) 0, transparent 50%);
+  }
+
+  #title{
+    font-family: 'Anton', sans-serif;
+    color: rgb(80, 176, 255)
+  }
+
+  #linkList{
+    cursor: pointer
+  }
+
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
