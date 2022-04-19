@@ -30,6 +30,10 @@
     background-color: hsl(257, 27%, 26%)
   }
 
+  .alertValue{
+    visibility: hidden
+  }
+
 
 
 @tailwind base;

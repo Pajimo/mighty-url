@@ -18,6 +18,7 @@ import Footer from "./footer";
 const Input = () =>{
 
     const urlTextBar = useRef()
+    const alertValue = useRef()
 
     const url = 'https://api.rebrandly.com/v1/links'
     const apiKey = '52aa4a3949914f999ca0ee55e7957896'
@@ -79,18 +80,20 @@ const Input = () =>{
     const submitUrl = (e) => {
         e.preventDefault();
         if(!urlTextBar.current.value){
-            console.log('hello')
             urlTextBar.current.classList.add('border-2', 'border-red-400')
+            alertValue.current.classList.remove('alertValue')
         }
         else{
             if (rebrandlyCheckbok && !bitlyCheckbox){
                 setUrlType('Rebrandly')
                 getRebrandlyUrl()
                 urlTextBar.current.classList.remove('border-2', 'border-red-400')
+                alertValue.current.classList.add('alertValue')
             }else if(!rebrandlyCheckbok && bitlyCheckbox){
                 setUrlType('Bit.ly')
                 bitsetCheckbox(true)
                 urlTextBar.current.classList.remove('border-2', 'border-red-400')
+                alertValue.current.classList.add('alertValue')
             }else{
                 console.log('Error')
             }
@@ -156,7 +159,7 @@ const Input = () =>{
 
     return(
         <div className="">
-            <div className="h-screen">
+            <div className="h-screen mb-24">
                 <Header />
                 <div className="md:flex mt-20 lg:pl-52 md:pl-20 pl-5 items-center">
                     <div className=" object-left overflow-hidden">
@@ -185,15 +188,17 @@ const Input = () =>{
                 </div>
             </div>
             
-            <div className="lg:px-52 md:px-20 px-10 relative pt-40 md:pt-20">
+            <div className="lg:px-52 md:px-20 px-10 relative pt-52 md:pt-20">
                 <div className="inset-x-0 absolute -bottom-20">
-                    <form onSubmit={submitUrl} className="lg:mx-52 md:mx-20 mx-10 py-10 lg:py-5 relative imagebg rounded-xl">
+                    <form onSubmit={submitUrl} className="lg:mx-52 md:mx-20 mx-10 py-12 lg:py-7 relative imagebg rounded-xl">
                         <img src={window.innerWidth > 900 ? shortenDesktop : shortenMobile} className='w-full rounded-xl' />
+                        <p className="text-red-400 px-5 alertValue top-3 absolute" ref={alertValue}>Please add a link</p>
                         <div className="absolute inset-x-0 top-0 md:px-20 px-2 py-7">
                             <div className=" flex flex-col md:flex-row py-3">
                                 <input ref={urlTextBar} className="w-full border-2 h-14 pl-5 rounded-lg pr-5 mb- md:mr-7" type='url'  placeholder = 'Shorten a link here....' value={urlValue} onChange={(e) =>{
                                     setUrl(e.target.value)
                                 }}/>
+
                                 <div className="md:mt-0 mt-5">
                                     <button className=' px-10 text-lg font-bold py-3 rounded-lg text-white seperator w-full hover:bg-cyan-200'>Shorten!</button><br></br>
                                 </div>
